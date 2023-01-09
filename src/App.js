@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Interface } from "./leftcol";
+import { Tags } from "./rightcol";
+import "./styles/App.css";
 
-function App() {
+function Main() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <main id="main">
+      <LeftCol />
+      <RightCol />
+    </main>
+  );
+}
+
+function LeftCol() {
+  return (
+    <div id="lcol">
+      <Interface />
     </div>
   );
 }
 
-export default App;
+function RightCol() {
+  return (
+    <div id="rcol">
+      <Tags />
+    </div>
+  );
+}
+
+export default Main;
