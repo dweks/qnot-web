@@ -1,0 +1,122 @@
+@import "reset.css";
+
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: hsl(20, 2%, 45%);
+  display: flex;
+  justify-content: center;
+}
+
+#main {
+  display: flex;
+  flex-direction: row;
+  color: hsl(20, 2%, 85%);
+  margin-top: 60px;
+  width: 1000px;
+  height: 800px;
+}
+
+#lcol {
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(50, 0%, 25%);
+  width: 75%;
+  height: 100%;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  overflow-y: scroll;
+}
+
+#rcol {
+  background-color: hsl(50, 0%, 20%);
+  width: 25%;
+  height: 100%;
+  border-radius: 0 5px 5px 0;
+  padding: 8px;
+}
+
+#listing {
+  overflow-y: hidden;
+}
+
+#messages p {
+  color: hsl(50, 40%, 80%);
+  border-radius: 3px;
+  padding: 6px;
+}
+
+#messages .suc {
+  background-color: hsl(90, 20%, 30%);
+}
+
+#messages .err {
+  background-color: hsl(20, 20%, 30%);
+}
+
+#messages .warn {
+  background-color: hsl(60, 20%, 30%);
+}
+
+#messages .info {
+  background-color: hsl(200, 20%, 30%);
+}
+
+#entry {
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-end;
+  height: 40px;
+  width: 100%;
+  padding: 4px;
+}
+
+#entry input {
+  background-color: hsl(50, 0%, 15%);
+  font-size: 1.1rem;
+  color: hsl(50, 2%, 85%);
+  width: 100%;
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  padding-left: 10px;
+}
+
+#entry input:focus {
+  border-color: hsl(50, 40%, 50%);
+}
+
+#prompt {
+  background-color: hsl(50, 60%, 35%);
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+  font-size: 1.1rem;
+}
+
+#last {
+  margin: 3px 0 10px 3px;
+  font-size: 1rem;
+}
+
+#last-title {
+  color: hsl(50, 2%, 15%);
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-right: 10px;
+}
+
+#last-entry {
+  color: hsl(50, 61%, 15%);
+  font-weight: 500;
+}
+
+.note {
+  background-color: hsl(50, 0%, 35%);
+  border-radius: 5px;
+  margin: 5px 0 5px 0;
+  padding: 5px;
+}
