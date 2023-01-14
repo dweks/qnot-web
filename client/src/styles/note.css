@@ -1,0 +1,9 @@
+.note {
+  margin: 5px 0 5px 0;
+}
+
+.note-content {
+  padding: 5px;
+  background-color: hsl(50, 0%, 35%);
+  border-radius: 5px;
+}

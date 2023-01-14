@@ -1,23 +1,20 @@
 const express = require("express");
 const {
+  getNotesBySearch,
+  getNotesByGather,
+  getNotesByRecent,
   createNote,
-  getNote,
-  getNotes,
   deleteNote,
   updateNote,
-  getNotesBySearch,
 } = require("../controllers/noteController");
 const Note = require("../models/noteModel");
 
 const router = express.Router();
 
-// gets all workouts
-router.get("/", getNotes);
-
+// Getting
+router.get("/gather", getNotesByGather);
 router.get("/search", getNotesBySearch);
-
-// gets SINGLE workouts
-router.get("/:id", getNote);
+router.get("/last", getNotesByRecent);
 
 // POST a new workout
 router.post("/", createNote);

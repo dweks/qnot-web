@@ -4,7 +4,11 @@ const mongoose = require("mongoose");
 const getNotesBySearch = async (req, res) => {
   try {
     const note = await Note.find({
-      title: req.query.qry,
+      // $or: [
+      //   { title: new RegExp(".*" + req.query.qry + ".*") },
+      //   { body: new RegExp(".*" + req.query.qry + ".*") },
+      // ],
+      title: new RegExp(".*" + req.query.qry + ".*"),
     }).sort({ createdAt: -1 });
 
     res.status(200).json(note);
@@ -13,9 +17,20 @@ const getNotesBySearch = async (req, res) => {
   }
 };
 
-const getNotes = async (req, res) => {
+const getNotesByGather = async (req, res) => {
   try {
     const note = await Note.find({}).sort({ createdAt: -1 });
+    res.status(200).json(note);
+  } catch (error) {
+    res.status(404).json({ error: error.message });
+  }
+};
+
+const getNotesByRecent = async (req, res) => {
+  try {
+    const note = await Note.find({})
+      .limit(req.query.num)
+      .sort({ createdAt: -1 });
     res.status(200).json(note);
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -87,10 +102,11 @@ const updateNote = async (req, res) => {
 };
 
 module.exports = {
+  getNotesBySearch,
+  getNotesByGather,
+  getNotesByRecent,
   createNote,
   getNote,
-  getNotes,
   deleteNote,
   updateNote,
-  getNotesBySearch,
 };

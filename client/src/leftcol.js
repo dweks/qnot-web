@@ -57,14 +57,14 @@ export function Interface() {
 }
 
 function Prompt() {
-  return <label id="prompt">{"qnot>"}</label>;
+  return <label id="prompt">{">"}</label>;
 }
 
 function LastEntry(props) {
   return (
     <div id="last">
       <span id="last-title">Last entry:</span>
-      <span id="last-entry">"{props.entry}"</span>
+      <span id="last-entry">{props.entry}</span>
     </div>
   );
 }
@@ -79,16 +79,19 @@ function Messages(props) {
 
 export function Listing(props) {
   return (
-    <div id="listing">
-      {props.listing &&
-        props.listing.notes.map((note) => (
-          <Note
-            key={note._id}
-            title={note.title}
-            body={note.body}
-            tags={note.tags}
-          />
-        ))}
-    </div>
+    <>
+      <p id="list-header">{props.listing.header}</p>
+      <div id="listing">
+        {props.listing &&
+          props.listing.notes.map((note) => (
+            <Note
+              key={note._id}
+              title={note.title}
+              body={note.body}
+              tags={note.tags}
+            />
+          ))}
+      </div>
+    </>
   );
 }
