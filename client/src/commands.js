@@ -1,14 +1,11 @@
-import { List, Message, TYPE as T } from "./classes/output";
+import { ListObj, MessageObj, TYPE as T, ACTION as A } from "./classes/output";
+import { parseAdd } from "./utilities/parse";
 
 export const add = async (args) => {
   if (args === "") {
-    return new Message("Command `add` must take arguments.", T.ERR);
+    return new MessageObj("Command `add` must take arguments.", T.ERR);
   }
-  const note = {
-    title: "title",
-    body: args.join(" "),
-    tags: "tags",
-  };
+  const note = parseAdd(args);
   const response = await fetch("/api/notes", {
     method: "POST",
     body: JSON.stringify(note),
@@ -20,19 +17,47 @@ export const add = async (args) => {
   if (!response.ok) {
     throw new Error(json.error);
   } else {
-    return new Message("Note added.", T.SUC);
+    return new MessageObj("Note added.", T.SUC, A.REFRESH);
   }
 };
 
-export const remove = () => {};
+export const remove = async (notes) => {
+  if (!notes.length) {
+    return new MessageObj("Select notes before deleting.", T.ERR);
+  }
+
+  const response = await fetch(
+    `/api/notes/delete?notes=${JSON.stringify(notes)}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  const deletedNotes = await response.json();
+  if (response.ok) {
+    console.log(deletedNotes);
+    return new MessageObj(
+      "Notes deleted",
+      T.SUC,
+      A.REFRESH,
+      deletedNotes.from((n) => n._id)
+    );
+  } else {
+    return new MessageObj("Notes NOT deleted", T.ERR);
+  }
+};
+
 export const edit = () => {};
 export const get = async (tags) => {
+  if (!tags.length) {
+    return new MessageObj("Provide tags to search for.", T.ERR);
+  }
   const response = await fetch(`/api/notes/gather?tags=${tags}`);
   const json = await response.json();
   if (response.ok) {
-    return new List("found notes", json);
+    return new ListObj(`All notes with tags ${tags.join(", ")}:`, json);
   } else {
-    return new Message("Nothing")
+    return new MessageObj(`Nothing found for tags ${tags.join(", ")}.`, T.WARN);
   }
 };
 export const help = () => {};
@@ -42,9 +67,9 @@ export const search = async (query) => {
   const response = await fetch(`/api/notes/search?qry=${query.join("%20")}`);
   const json = await response.json();
   if (response.ok && json.length !== 0) {
-    return new List("found notes", json);
+    return new ListObj("found notes", json);
   } else {
-    return new Message(`Nothing found for ${query.join(" ")}`, T.WARN)
+    return new MessageObj(`Nothing found for ${query.join(" ")}`, T.WARN);
   }
 };
 
@@ -55,13 +80,25 @@ export const last = async (num) => {
   const response = await fetch(`/api/notes/last?num=${num}`);
   const json = await response.json();
   if (response.ok && json.length !== 0) {
-    let pluralMaybe = "modified note"
+    let pluralMaybe = "modified note";
     if (json.length > 1) {
-      pluralMaybe = num.toString() + " modified notes"
+      pluralMaybe = num.toString() + " modified notes";
     }
-    return new List(`Last ${pluralMaybe}`, json);
+    return new ListObj(`Last ${pluralMaybe}`, json);
   } else {
-    return new Message("Nothing", T.WARN)
+    return new MessageObj("Nothing found", T.WARN, A.NOLIST);
   }
+};
 
+export const stick = async ([id, sticky]) => {
+  console.log(id, sticky);
+  const response = await fetch(`/api/notes/${id}?sticky=${!sticky}`);
+  const json = await response.json();
+  if (response.ok && json.length !== 0) {
+    console.log("GOOD");
+    return new MessageObj("Note stuck", T.SUC, A.REFRESH);
+  } else {
+    console.log("BAD");
+    return new MessageObj("Nothing found", T.WARN, A.NOLIST);
+  }
 };

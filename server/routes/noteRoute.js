@@ -3,8 +3,8 @@ const {
   getNotesBySearch,
   getNotesByGather,
   getNotesByRecent,
+  deleteNotes,
   createNote,
-  deleteNote,
   updateNote,
 } = require("../controllers/noteController");
 const Note = require("../models/noteModel");
@@ -16,13 +16,13 @@ router.get("/gather", getNotesByGather);
 router.get("/search", getNotesBySearch);
 router.get("/last", getNotesByRecent);
 
-// POST a new workout
+// POST
 router.post("/", createNote);
 
-// DELETE a workout
-router.delete("/:id", deleteNote);
+// DELETE
+router.delete("/delete", deleteNotes);
 
-// UPDATE a workout
+// UPDATE
 router.patch("/:id", updateNote);
 
 module.exports = router;

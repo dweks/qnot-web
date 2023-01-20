@@ -1,0 +1,83 @@
+.sm-note {
+  margin: 5px 0 5px 0;
+  background-color: hsl(50, 0%, 25%);
+  padding: 3px 3px 2px 7px;
+  border-radius: 3px;
+  width: 100%;
+  box-shadow: 0 0 8px -5px hsl(0, 0%, 0%);
+}
+
+.sm-note:hover {
+  background-color: hsl(0, 10%, 25%);
+  cursor: pointer;
+}
+
+.sm-note-title {
+  color: hsl(50, 0%, 100%);
+  font-size: 11pt;
+}
+
+.sm-note-body {
+  padding: 3px 0;
+  font-size: 10pt;
+}
+
+#btn-area {
+  display: flex;
+  justify-content: space-around;
+  height: calc(var(--last-entry-h) + var(--entry-h));
+}
+
+#btn-del {
+  color: hsl(50, 0%, 100%);
+  cursor: pointer;
+  background-color: hsl(0, 40%, 40%);
+  border-radius: 2px;
+  border: 2px solid hsl(0, 40%, 35%);
+  width: 50%;
+  padding: 3px;
+  margin: 2px;
+  height: 25px;
+}
+
+#btn-del:hover {
+  color: hsl(50, 0%, 100%);
+  background-color: hsl(0, 30%, 50%);
+}
+
+#btn-del:active {
+  position: relative;
+  color: hsl(50, 0%, 100%);
+  background-color: hsl(0, 50%, 50%);
+  top: 2px;
+  left: 2px;
+}
+
+#btn-clear {
+  background-color: hsl(50, 30%, 40%);
+  color: hsl(50, 0%, 100%);
+  cursor: pointer;
+  border-radius: 2px;
+  border: 2px solid hsl(50, 40%, 30%);
+  margin: 2px;
+  width: 50%;
+  padding: 3px;
+  height: 25px;
+}
+
+#btn-clear:hover {
+  color: hsl(50, 0%, 100%);
+  background-color: hsl(0, 50%, 50%);
+}
+
+#btn-clear:active {
+  position: relative;
+  color: hsl(50, 0%, 100%);
+  background-color: hsl(0, 50%, 50%);
+  top: 2px;
+  left: 2px;
+}
+
+#sel-title {
+  font-size: var(--header-font-size);
+}

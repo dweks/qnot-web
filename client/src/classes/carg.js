@@ -1,13 +1,11 @@
-import std_dispatch from "../dispatch";
-
 class Carg {
   constructor(cmd = null, args = null) {
     this.c = cmd;
     this.a = args;
   }
 
-  isAdm() {
-    return this.c && std_dispatch[this.c] !== undefined ? true : false;
+  isDel() {
+    return this.c && (this.c === "del" || this.c === "delete");
   }
 
   isEmpty() {

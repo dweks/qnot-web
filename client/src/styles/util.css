@@ -1,0 +1,29 @@
+.anm1 {
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.anm2 {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.anm3 {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.anm4 {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.anm5 {
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+h1 {
+  font-size: 16pt;
+  font-weight: 600;
+}

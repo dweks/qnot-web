@@ -1,0 +1,146 @@
+:root {
+  --last-entry-h: 30px;
+  --entry-h: 40px;
+  --visible-w: 600px;
+}
+
+#entry {
+  display: flex;
+  flex-direction: column;
+  width: var(--visible-w);
+}
+
+#prompt {
+  background-color: hsl(50, 2%, 40%);
+  display: flex;
+  flex-direction: row;
+  border-radius: 4px;
+  height: var(--entry-h);
+  box-shadow: 0 2px 8px -3px hsl(0, 0%, 10%);
+}
+
+#prompt:focus-within {
+  background-color: hsl(50, 40%, 35%);
+}
+
+#prompt-char {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: hsl(50, 0%, 100%);
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  width: 25px;
+  border-radius: 4px 0 0 4px;
+  font-size: 1.1rem;
+}
+
+#inp {
+  background-color: hsl(50, 0%, 20%);
+  font-size: 1.1rem;
+  color: hsl(50, 90%, 85%);
+  width: 100%;
+  margin: 2px;
+  padding: 8px;
+  outline: none;
+}
+
+#inp:focus {
+  background-color: hsl(50, 0%, 10%);
+}
+
+#last {
+  height: var(--last-entry-h);
+  padding: 4px 4px 4px 0;
+}
+
+#last-title {
+  color: hsl(50, 6%, 70%);
+  text-transform: uppercase;
+  font-size: 10pt;
+  font-weight: 500;
+  margin-right: 6px;
+}
+
+#last-entry {
+  background-color: hsl(20, 8%, 20%);
+  color: hsl(50, 50%, 80%);
+  font-weight: 500;
+  padding: 0 6px 0 6px;
+  border-radius: 3px;
+}
+
+#listing {
+  overflow-y: scroll;
+  padding-right: 15px;
+}
+
+#select-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  background-color: hsl(200, 20%, 30%);
+  cursor: pointer;
+  text-align: center;
+  margin: 2px;
+  border-radius: 6px;
+}
+
+#noselect-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 22px;
+  height: 22px;
+  background-color: hsl(200, 10%, 20%);
+  cursor: pointer;
+  text-align: center;
+  margin: 2px;
+  border-radius: 6px;
+}
+
+
+#list-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 8px 0;
+  font-size: var(--header-font-size);
+  width: 100%;
+  border-radius: 6px;
+  width: var(--visible-w);
+}
+
+#list-header h1 {
+  margin-left: 8px;
+  padding: 4px;
+}
+#messages {
+  width: var(--visible-w);
+}
+
+#messages p {
+  position: inherit;
+  color: hsl(50, 40%, 80%);
+  border-radius: 3px;
+  padding: 6px;
+  margin-top: 3px;
+}
+
+#suc {
+  background-color: hsl(90, 20%, 30%);
+}
+
+#err {
+  background-color: hsl(20, 20%, 30%);
+}
+
+#warn {
+  background-color: hsl(60, 20%, 30%);
+}
+
+#info {
+  background-color: hsl(200, 20%, 30%);
+}

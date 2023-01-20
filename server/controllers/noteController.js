@@ -55,7 +55,6 @@ const getNote = async (req, res) => {
 const createNote = async (req, res) => {
   const { title, body, tags } = req.body;
 
-  // add doc to db
   try {
     const note = await Note.create({ title, body, tags });
     res.status(200).json(note);
@@ -65,14 +64,14 @@ const createNote = async (req, res) => {
 };
 
 // delete a note
-const deleteNote = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid) {
-    return res.status(404).json({ error: "No such note" });
-  }
+const deleteNotes = async (req, res) => {
+  // const { id } = req.params;
+  // if (!mongoose.Types.ObjectId.isValid) {
+  //   return res.status(404).json({ error: "No such note" });
+  // }
 
-  const note = await Note.findOneAndDelete({ _id: id });
-
+  const notes = JSON.parse(req.query.notes);
+  const note = await Note.deleteMany({ _id: { $in: notes } });
   if (!note) {
     return res.status(400).json({ error: "No such note" });
   }
@@ -87,10 +86,12 @@ const updateNote = async (req, res) => {
     return res.status(404).json({ error: "No such note" });
   }
 
+  const toggle = req.query.sticky === "true" ? true : false;
+
   const note = await Note.findOneAndUpdate(
     { _id: id },
     {
-      ...req.body,
+      sticky: toggle,
     }
   );
 
@@ -107,6 +108,6 @@ module.exports = {
   getNotesByRecent,
   createNote,
   getNote,
-  deleteNote,
+  deleteNotes,
   updateNote,
 };

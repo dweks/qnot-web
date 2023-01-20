@@ -1,9 +1,108 @@
 .note {
-  margin: 5px 0 5px 0;
+  display: flex;
+  margin: 5px 0 8px 0;
+  width: var(--visible-w);
 }
 
 .note-content {
-  padding: 5px;
-  background-color: hsl(50, 0%, 35%);
-  border-radius: 5px;
+  padding: 7px;
+  background-color: hsl(50, 0%, 25%);
+  border-radius: 4px;
+  width: 100%;
+  box-shadow: 0 0 8px -5px hsl(0, 0%, 0%);
+  border: 1px solid hsl(50, 0%, 32%);
+}
+
+.selected {
+  background-color: hsl(200, 5%, 30%);
+  box-shadow: inset 0 0 0 2px hsl(200, 20%, 45%);
+}
+
+.note-content:hover {
+  background-color: hsl(50, 10%, 30%);
+}
+
+.note-num {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(200, 15%, 40%);
+  color: hsl(50, 0%, 100%);
+  font-weight: 700;
+  font-size: 10pt;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  margin-right: 3px;
+}
+
+.note-num:hover {
+  cursor: pointer;
+  background-color: hsl(200, 20%, 45%);
+}
+
+.note-title {
+  font-size: larger;
+}
+
+.note-body {
+  padding: 5px 0;
+}
+
+.note-tag-area {
+  margin-top: 3px;
+}
+
+.note-tags {
+  font-size: 11pt;
+  font-weight: 600;
+  color: hsl(40, 70%, 80%);
+  padding: 2px 5px;
+  border-radius: 6px;
+  border: 1px solid hsl(40, 20%, 40%);
+  cursor: pointer;
+}
+
+.note-tags:hover {
+  color: hsl(40, 90%, 80%);
+  background-color: hsl(40, 20%, 40%);
+  border: 1px solid hsl(40, 20%, 40%);
+}
+
+.note-actions {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  cursor: pointer;
+  width: 0;
+}
+
+.note-content:hover + .note-actions {
+  visibility: visible;
+  width: 30px;
+}
+
+.note-actions:hover {
+  visibility: visible;
+  width: 30px;
+}
+
+.note-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+}
+
+.note-action.note-del:hover {
+  background-color: hsl(0, 40%, 40%);
+}
+
+.note-action.note-stick:hover {
+  background-color: hsl(200, 40%, 40%);
+}
+
+.sticky {
+  border: 2px solid hsl(90, 30%, 35%);
 }
