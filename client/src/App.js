@@ -18,7 +18,7 @@ export function Main() {
   const [entry, setEntry] = useState("");
   const [selection, updateSelection] = useState(new SelectionObj());
   const [list, updateList] = useState(new ListObj("Nothing to list"));
-  const [sticky, updateSticky] = useState();
+  // const [sticky, updateSticky] = useState();
 
   const currentMessage = useRef("");
   const listCarg = useRef(new Carg());
@@ -29,6 +29,17 @@ export function Main() {
     console.log("MAIN RENDER:", renderCount.current);
     renderCount.current += 1;
   });
+
+  useEffect(() => {
+    command("last", 5)
+      .then((res) => {
+        console.log("res", res);
+      })
+      .catch((err) => {
+        console.log("error:", err);
+      })
+      .finally(() => console.log("done"));
+  }, []);
 
   const processEntry = async (event) => {
     if (event.key === "Enter") {
