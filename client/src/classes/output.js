@@ -95,7 +95,7 @@ export class SelectionObj {
 
   getIds() {
     if (this.notes.length) {
-      return this.notes.from((n) => n._id);
+      return this.notes.map((n) => n._id);
     } else {
       return this.notes;
     }
