@@ -31,14 +31,7 @@ export function Main() {
   });
 
   useEffect(() => {
-    command("last", 5)
-      .then((res) => {
-        console.log("res", res);
-      })
-      .catch((err) => {
-        console.log("error:", err);
-      })
-      .finally(() => console.log("done"));
+    command("last", 5);
   }, []);
 
   const processEntry = async (event) => {
@@ -75,7 +68,7 @@ export function Main() {
           break;
         case A.DELETED:
           await command(listCarg.current.c, listCarg.current.a);
-          select(output.supp);
+          selection.removeById(output.supp);
           break;
         case A.NOLIST:
           updateList(new ListObj("Nothing to list", []));

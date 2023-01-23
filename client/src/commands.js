@@ -33,15 +33,8 @@ export const remove = async (notes) => {
     }
   );
 
-  const deletedNotes = await response.json();
   if (response.ok) {
-    console.log(deletedNotes);
-    return new MessageObj(
-      "Notes deleted",
-      T.SUC,
-      A.REFRESH
-      // deletedNotes.from((n) => n._id)
-    );
+    return new MessageObj("Notes deleted", T.SUC, A.DELETED, notes);
   } else {
     return new MessageObj("Notes NOT deleted", T.ERR);
   }

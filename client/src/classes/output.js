@@ -51,7 +51,7 @@ export class SelectionObj {
     return this.notes.some((n) => note._id === n._id);
   }
 
-  addToggle(note) {
+  toggle(note) {
     const found = this.notes.find((n) => n._id === note._id);
     if (found) {
       this.notes.splice(this.notes.indexOf(found), 1);
@@ -60,16 +60,25 @@ export class SelectionObj {
     }
   }
 
-  add(newNotes) {
-    if (newNotes instanceof Array) {
-      newNotes.forEach((n) => {
+  add(notes) {
+    if (notes instanceof Array) {
+      notes.forEach((n) => {
         if (!this.has(n)) {
           this.notes.push(n);
         }
       });
     } else {
-      this.addToggle(newNotes);
+      this.toggle(notes);
     }
+  }
+
+  removeById(noteId) {
+    noteId.forEach((id) => {
+      const found = this.notes.find((n) => n._id === id);
+      if (found) {
+        this.notes.splice(this.notes.indexOf(found), 1);
+      }
+    });
   }
 
   clear() {

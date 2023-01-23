@@ -3,7 +3,6 @@ import { AnimatePresence } from "framer-motion";
 import { SelectionObj } from "./classes/output";
 
 export function SelActions(props) {
-  console.log(props.selection);
   return (
     <div id="btn-area">
       <ClearSelected clear={props.clear} />
