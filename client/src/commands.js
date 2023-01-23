@@ -2,7 +2,7 @@ import { ListObj, MessageObj, TYPE as T, ACTION as A } from "./classes/output";
 import { parseAdd } from "./utilities/parse";
 
 export const add = async (args) => {
-  if (args === "") {
+  if (args === "" || args.length === 0 || args[0] === "") {
     return new MessageObj("Command `add` must take arguments.", T.ERR);
   }
   const note = parseAdd(args);
