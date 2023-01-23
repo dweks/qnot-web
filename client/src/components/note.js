@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 export const Note = (props) => {
-// console.log("Note: sel note:", props.selection.notes, "this note:", props.note);
+  // console.log("Note: sel note:", props.selection.notes, "this note:", props.note);
   return (
     <motion.div
       initial={{ height: 0, opacity: 0, overflow: "hidden" }}
@@ -54,12 +54,14 @@ export const Note = (props) => {
 export const SmallNote = (props) => {
   return (
     <motion.div
-      initial={{ opacity: 0, overflow: "hidden" }}
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ ease: "easeOut", duration: 0.3 }}
+      transition={{ ease: "easeOut", duration: 0.2 }}
       exit={{
         opacity: 0,
-        transition: { duration: 0.3, opacity: 0 },
+        height: 0,
+        overflow: "hidden",
+        transition: { ease: "easeOut", duration: 0.1 },
       }}
       className="sm-note anm2"
       onClick={() => props.select(props.note)}

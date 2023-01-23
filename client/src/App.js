@@ -26,7 +26,7 @@ export function Main() {
 
   const renderCount = useRef(1);
   useEffect(() => {
-    // console.log("MAIN RENDER:", renderCount.current);
+    console.log("MAIN RENDER:", renderCount.current);
     renderCount.current += 1;
   });
 
@@ -81,15 +81,14 @@ export function Main() {
 
   return (
     <div id="main">
-      {/* <Left /> */}
+      <Left />
       <div id="center">
         <div id="entry">
-          <LastEntry entry={entry} />
-          <div id="prompt" className="anm5">
+          <div id="prompt" className="anm2">
             <span id="prompt-char">{">"}</span>
             <input
               ref={inputRef}
-              className="anm5"
+              className="anm2"
               id="inp"
               type="text"
               name="entry"
@@ -98,6 +97,7 @@ export function Main() {
             />
           </div>
         </div>
+        {/* <LastEntry entry={entry} /> */}
         <AnimatePresence>
           {currentMessage.current.type !== T.HIDE && (
             <Messages message={currentMessage.current} />
@@ -133,11 +133,11 @@ function Right(props) {
     <motion.div
       id="right"
       key="messages"
-      initial={{ height: 0, opacity: 0, overflow: "hidden" }}
-      animate={{ height: "auto", opacity: 1 }}
-      transition={{ ease: "easeOut", duration: 0.3 }}
+      initial={{ x: -300, opacity: 0, overflow: "hidden" }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ ease: "easeOut", duration: 0.2 }}
       exit={{
-        height: 0,
+        x: -300,
         opacity: 0,
         overflow: "hidden",
         transition: { duration: 0.3 },
@@ -147,6 +147,7 @@ function Right(props) {
         key="selactions"
         command={props.command}
         clear={props.clear}
+        selection={props.selection}
       />
       <Selection
         key="selection"

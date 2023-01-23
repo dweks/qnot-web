@@ -6,53 +6,53 @@
 
 :root {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  --left-w: 250px;
+  --left-w: 65px;
   --center-w: 650px;
   --right-w: 250px;
   --header-font-size: 16pt;
 }
 
 body {
-  background-color: hsl(20, 0%, 17%);
-  color: hsl(20, 2%, 95%);
+  background-color: hsl(200, 10%, 75%);
+  color: hsl(50, 2%, 10%);
+  padding: 6px;
 }
 
 #main {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100vw;
 }
 
 #left {
   display: flex;
   flex-direction: column;
-  background-color: hsl(50, 0%, 16%);
+  background-color: hsl(200, 10%, 55%);
   width: var(--left-w);
-  height: fit-content;
-  border-radius: 0 5px 5px 0;
+  height: 400px;
+  border-radius: 8px 0 0 8px;
   padding: 10px;
+  z-index: 3;
 }
 
 #center {
-  position: fixed;
   display: flex;
   flex-direction: column;
   width: var(--center-w);
-  border-radius: 8px;
-  margin: 10px;
-  padding: 15px;
+  border-radius: 0 8px 8px 8px;
+  padding: 10px;
   height: fit-content;
   max-height: 98vh;
-  background-color:hsl(20, 0%, 15%);
+  background-color: hsl(200, 10%, 97%);
+  box-shadow: 0 0 13px -4px hsl(0, 0%, 30%);
+  z-index: 2;
 }
 
 #right {
-  position: relative;
-  left: calc(var(--center-w) / 2 + var(--right-w) / 2);
-  background-color: hsl(50, 0%, 16%);
+  margin-left: -6px;
+  background-color: hsl(200, 10%, 87%);
   width: var(--right-w);
   height: fit-content;
-  border-radius: 8px;
-  padding: 10px;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 10px 10px 18px;
+  overflow-y: scroll;
+  z-index: 1;
 }

@@ -39,6 +39,12 @@ export class ListObj extends Output {
 export class SelectionObj {
   constructor(notes = []) {
     this.notes = notes;
+    this.size = this.notes.length;
+  }
+
+  header() {
+    const sMaybe = this.size > 1 ? "s" : "";
+    return `${this.size} note${sMaybe} selected`;
   }
 
   has(note) {
@@ -79,6 +85,10 @@ export class SelectionObj {
   }
 
   getIds() {
-    return this.notes.from((n) => n._id);
+    if (this.notes.length) {
+      return this.notes.from((n) => n._id);
+    } else {
+      return this.notes;
+    }
   }
 }

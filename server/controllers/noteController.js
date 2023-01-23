@@ -86,8 +86,6 @@ const updateNote = async (req, res) => {
     return res.status(404).json({ error: "No such note" });
   }
 
-  const toggle = req.query.sticky === "true" ? true : false;
-
   const note = await Note.findOneAndUpdate(
     { _id: id },
     {

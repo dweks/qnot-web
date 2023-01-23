@@ -39,8 +39,8 @@ export const remove = async (notes) => {
     return new MessageObj(
       "Notes deleted",
       T.SUC,
-      A.REFRESH,
-      deletedNotes.from((n) => n._id)
+      A.REFRESH
+      // deletedNotes.from((n) => n._id)
     );
   } else {
     return new MessageObj("Notes NOT deleted", T.ERR);
@@ -91,9 +91,12 @@ export const last = async (num) => {
 };
 
 export const stick = async ([id, sticky]) => {
-  console.log(id, sticky);
-  const response = await fetch(`/api/notes/${id}?sticky=${!sticky}`);
+  console.log("in command: ", id, sticky);
+  const response = await fetch(
+    `/api/notes?id=${id}&sticky=${JSON.stringify(!sticky)}`
+  );
   const json = await response.json();
+  console.log(json);
   if (response.ok && json.length !== 0) {
     console.log("GOOD");
     return new MessageObj("Note stuck", T.SUC, A.REFRESH);

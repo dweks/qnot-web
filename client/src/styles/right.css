@@ -1,19 +1,19 @@
 .sm-note {
   margin: 5px 0 5px 0;
-  background-color: hsl(50, 0%, 25%);
+  background-color: hsl(50, 0%, 100%);
   padding: 3px 3px 2px 7px;
-  border-radius: 3px;
+  border-radius: 0 3px 3px 0;
+  border: 1px solid hsl(0, 0%, 75%);
   width: 100%;
-  box-shadow: 0 0 8px -5px hsl(0, 0%, 0%);
+  box-shadow: 1px 1px 8px -5px hsl(0, 0%, 20%);
 }
 
 .sm-note:hover {
-  background-color: hsl(0, 10%, 25%);
+  background-color: hsl(10, 70%, 90%);
   cursor: pointer;
 }
 
 .sm-note-title {
-  color: hsl(50, 0%, 100%);
   font-size: 11pt;
 }
 
@@ -24,20 +24,26 @@
 
 #btn-area {
   display: flex;
-  justify-content: space-around;
-  height: calc(var(--last-entry-h) + var(--entry-h));
+  justify-content: space-evenly;
+  height: var(--entry-h);
+}
+
+.sel-btn {
+  width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  padding: 3px;
+  margin: 2px;
+  font-size: 9pt;
+  font-weight: 700;
+  border: 2px solid;
+  /* height: 25px; */
 }
 
 #btn-del {
   color: hsl(50, 0%, 100%);
-  cursor: pointer;
-  background-color: hsl(0, 40%, 40%);
-  border-radius: 2px;
-  border: 2px solid hsl(0, 40%, 35%);
-  width: 50%;
-  padding: 3px;
-  margin: 2px;
-  height: 25px;
+  background-color: hsl(0, 25%, 50%);
+  border-color: hsl(0, 40%, 35%);
 }
 
 #btn-del:hover {
@@ -54,15 +60,9 @@
 }
 
 #btn-clear {
-  background-color: hsl(50, 30%, 40%);
   color: hsl(50, 0%, 100%);
-  cursor: pointer;
-  border-radius: 2px;
-  border: 2px solid hsl(50, 40%, 30%);
-  margin: 2px;
-  width: 50%;
-  padding: 3px;
-  height: 25px;
+  background-color: hsl(50, 30%, 40%);
+  border-color: hsl(0, 40%, 35%);
 }
 
 #btn-clear:hover {
@@ -78,6 +78,26 @@
   left: 2px;
 }
 
+#btn-export {
+  background-color: hsl(50, 30%, 40%);
+  color: hsl(50, 0%, 100%);
+  border-color: hsl(0, 40%, 35%);
+}
+
+#btn-export:hover {
+  color: hsl(50, 0%, 100%);
+  background-color: hsl(0, 50%, 50%);
+}
+
+#btn-export:active {
+  position: relative;
+  color: hsl(50, 0%, 100%);
+  background-color: hsl(0, 50%, 50%);
+  top: 2px;
+  left: 2px;
+}
+
 #sel-title {
   font-size: var(--header-font-size);
+  margin: 8px 0;
 }
