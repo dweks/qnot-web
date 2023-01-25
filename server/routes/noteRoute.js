@@ -1,17 +1,19 @@
 const express = require("express");
 const {
+  getNote,
   getNotesBySearch,
   getNotesByGather,
   getNotesByRecent,
   deleteNotes,
   createNote,
-  updateNote,
+  toggleSticky,
 } = require("../controllers/noteController");
 const Note = require("../models/noteModel");
 
 const router = express.Router();
 
 // Getting
+router.get("/test/:id", getNote)
 router.get("/gather", getNotesByGather);
 router.get("/search", getNotesBySearch);
 router.get("/last", getNotesByRecent);
@@ -23,6 +25,6 @@ router.post("/", createNote);
 router.delete("/delete", deleteNotes);
 
 // UPDATE
-router.patch("/:id", updateNote);
+router.patch("/sticky/:id", toggleSticky);
 
 module.exports = router;

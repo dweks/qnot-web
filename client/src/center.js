@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Note } from "./components/note";
+import selectAllImg from "./graphics/select-all.png";
 
 export function LastEntry(props) {
   return (
@@ -40,7 +41,7 @@ export function Listing(props) {
           }`}
           onClick={() => props.select(props.listing.notes)}
         >
-          *
+          <img src={selectAllImg} alt="Select all listed notes" />
         </div>
         <h1>{props.listing.header}</h1>
       </div>

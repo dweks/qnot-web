@@ -80,32 +80,30 @@ const deleteNotes = async (req, res) => {
 };
 
 // update a note
-const updateNote = async (req, res) => {
+const toggleSticky = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid) {
     return res.status(404).json({ error: "No such note" });
   }
 
-  const note = await Note.findOneAndUpdate(
-    { _id: id },
-    {
-      sticky: toggle,
-    }
-  );
+  const note = await Note.findByIdAndUpdate(id, [
+    { $set: { sticky: { $not: "$sticky" } } },
+  ]);
 
   if (!note) {
-    return res.status(400).json({ error: "No such note" });
+    return res.status(400).json({ error: "No update performed" });
   }
 
   res.status(200).json(note);
 };
 
 module.exports = {
+  getNote,
   getNotesBySearch,
   getNotesByGather,
   getNotesByRecent,
   createNote,
   getNote,
   deleteNotes,
-  updateNote,
+  toggleSticky,
 };

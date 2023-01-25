@@ -8,7 +8,6 @@ const app = express();
 // more middleware
 // attaches any data on a request to the req as json
 app.use(express.json());
-// app.use(cors())
 // fires for every request that comes in, logs everything
 app.use((req, res, next) => {
   console.log(req.path, req.method);
@@ -25,7 +24,11 @@ mongoose
   .then(() => {
     // listen for requests only when connected to db
     app.listen(process.env.PORT, () => {
-      console.log("connected to db and listening on port", process.env.PORT);
+      console.log(
+        "___ CONNECTED TO DB AND LISTENING ON PORT",
+        process.env.PORT,
+        "___"
+      );
     });
   })
   .catch((error) => {

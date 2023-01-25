@@ -84,12 +84,17 @@
   align-items: center;
   width: 22px;
   height: 22px;
-  background-color: white;
-  border: 3px solid hsl(200, 60%, 50%);
+  background-color: hsl(200, 60%, 50%);
+  /* border: 3px solid hsl(200, 60%, 50%); */
   color: hsl(200, 60%, 50%);
   cursor: pointer;
   text-align: center;
-  border-radius: 6px;
+  border-radius: 8px;
+}
+
+#select-all img {
+  height: 12px;
+  width: 12px;
 }
 
 #noselect-all {
@@ -104,6 +109,11 @@
   cursor: pointer;
   text-align: center;
   border-radius: 6px;
+}
+
+#noselect-all img {
+  height: 12px;
+  width: 12px;
 }
 
 #list-header {

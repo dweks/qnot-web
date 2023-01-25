@@ -97,6 +97,11 @@
   border-radius: 0 4px 4px 0;
 }
 
+.note-action img {
+  width: 12px;
+  height: 12px;
+}
+
 .note-action.note-del:hover {
   background-color: hsl(0, 30%, 70%);
   color: white;
@@ -108,5 +113,5 @@
 }
 
 .sticky {
-  /* border: 3px solid hsl(90, 60%, 50%); */
+  border: 3px solid hsl(90, 60%, 50%);
 }

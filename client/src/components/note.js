@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
+import deleteNoteImg from "../graphics/delete-note.png";
+
 export const Note = (props) => {
-  // console.log("Note: sel note:", props.selection.notes, "this note:", props.note);
   return (
     <motion.div
       initial={{ height: 0, opacity: 0, overflow: "hidden" }}
@@ -36,7 +37,7 @@ export const Note = (props) => {
           className="note-action note-del anm2"
           onClick={() => props.command("del", [props.note._id])}
         >
-          d
+          <img src={deleteNoteImg} alt="Delete this note" />
         </div>
         <div
           className="note-action note-stick"

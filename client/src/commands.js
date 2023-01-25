@@ -1,11 +1,11 @@
 import { ListObj, MessageObj, TYPE as T, ACTION as A } from "./classes/output";
 import { parseAdd } from "./utilities/parse";
 
-export const add = async (args) => {
-  if (args === "" || args.length === 0 || args[0] === "") {
+export const add = async (rawNote) => {
+  if (rawNote === "" || rawNote.length === 0 || rawNote[0] === "") {
     return new MessageObj("Command `add` must take arguments.", T.ERR);
   }
-  const note = parseAdd(args);
+  const note = parseAdd(rawNote);
   const response = await fetch("/api/notes", {
     method: "POST",
     body: JSON.stringify(note),
@@ -17,7 +17,7 @@ export const add = async (args) => {
   if (!response.ok) {
     throw new Error(json.error);
   } else {
-    return new MessageObj("Note added.", T.SUC, A.REFRESH);
+    return new MessageObj(`Note added: "${note.body}"`, T.SUC, A.REFRESH);
   }
 };
 
@@ -84,13 +84,15 @@ export const last = async (num) => {
 };
 
 export const stick = async ([id, sticky]) => {
-  console.log("in command: ", id, sticky);
-  const response = await fetch(
-    `/api/notes?id=${id}&sticky=${JSON.stringify(!sticky)}`
-  );
-  const json = await response.json();
-  console.log(json);
-  if (response.ok && json.length !== 0) {
+  // console.log("id:", id, "sticky:", JSON.stringify(!sticky));
+  const response = await fetch(`/api/notes/sticky/${id}`, {
+    method: "PATCH",
+    // body: !sticky,
+    headers: {
+      "Content-type": "application/json-patch+json",
+    },
+  });
+  if (response.ok) {
     console.log("GOOD");
     return new MessageObj("Note stuck", T.SUC, A.REFRESH);
   } else {

@@ -77,7 +77,7 @@ export function Main() {
           console.log("ACTION: DEFAULT", output.msg);
       }
     } else {
-      currentMessage.current = new MessageObj("", T.HIDE);
+      // currentMessage.current = new MessageObj("", T.HIDE);
       listCarg.current = new Carg(cmd, arg);
       updateList(output);
     }
