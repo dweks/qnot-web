@@ -35,7 +35,7 @@ export const Note = (props) => {
       <div className="note-actions anm2">
         <div
           className="note-action note-del anm2"
-          onClick={() => props.command("del", [props.note._id])}
+          onClick={() => props.command("delete", [props.note._id])}
         >
           <img src={deleteNoteImg} alt="Delete this note" />
         </div>

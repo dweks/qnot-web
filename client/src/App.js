@@ -1,17 +1,12 @@
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useEffect, useState, createRef, useRef } from "react";
 import { parseEntry } from "./utilities/parse";
-import std_dispatch from "./dispatch";
+import std_dispatch from "./utilities/dispatch";
 import Carg from "./classes/carg";
-import {
-  ListObj,
-  MessageObj,
-  TYPE as T,
-  ACTION as A,
-  SelectionObj,
-} from "./classes/output";
-import { Messages, LastEntry, Listing } from "./center";
-import { Selection, SelActions } from "./right";
+import { ListObj, MessageObj, TYPE as T, ACTION as A } from "./classes/output";
+import SelectionObj from "./classes/selectionObject";
+import { Messages, Listing } from "./center";
+import { Selection } from "./selection";
 import "./styles/App.css";
 
 export function Main() {
@@ -23,10 +18,10 @@ export function Main() {
   const currentMessage = useRef("");
   const listCarg = useRef(new Carg());
   const inputRef = createRef();
-
   const renderCount = useRef(1);
+
   useEffect(() => {
-    console.log("MAIN RENDER:", renderCount.current);
+    // console.log("MAIN RENDER:", renderCount.current);
     renderCount.current += 1;
   });
 
@@ -73,6 +68,9 @@ export function Main() {
         case A.NOLIST:
           updateList(new ListObj("Nothing to list", []));
           break;
+        case A.CLEARSEL:
+          updateSelection(new SelectionObj());
+          break;
         default:
           console.log("ACTION: DEFAULT", output.msg);
       }
@@ -116,12 +114,7 @@ export function Main() {
       </div>
       <AnimatePresence>
         {!selection.empty() && (
-          <Right
-            command={command}
-            select={select}
-            selection={selection}
-            clear={updateSelection}
-          />
+          <Selection command={command} select={select} selection={selection} />
         )}
       </AnimatePresence>
     </div>
@@ -130,36 +123,6 @@ export function Main() {
 
 function Left(props) {
   return <div id="left">left</div>;
-}
-
-function Right(props) {
-  return (
-    <motion.div
-      id="right"
-      key="messages"
-      initial={{ x: -300, opacity: 0, overflow: "hidden" }}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ ease: "easeOut", duration: 0.2 }}
-      exit={{
-        x: -300,
-        opacity: 0,
-        overflow: "hidden",
-        transition: { duration: 0.3 },
-      }}
-    >
-      <SelActions
-        key="selactions"
-        command={props.command}
-        clear={props.clear}
-        selection={props.selection}
-      />
-      <Selection
-        key="selection"
-        select={props.select}
-        selection={props.selection}
-      />
-    </motion.div>
-  );
 }
 
 export default Main;

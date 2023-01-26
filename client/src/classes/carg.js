@@ -4,10 +4,6 @@ class Carg {
     this.a = args;
   }
 
-  isDel() {
-    return this.c && (this.c === "del" || this.c === "delete");
-  }
-
   isEmpty() {
     return this.c === null;
   }

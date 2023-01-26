@@ -1,4 +1,4 @@
-import std_dispatch from "../dispatch";
+import std_dispatch from "./dispatch";
 import Carg from "../classes/carg";
 
 const BARETAG = /[a-zA-Z0-9]+/;
