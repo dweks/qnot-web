@@ -1,9 +1,10 @@
 export const TYPE = {
-  SUC: "suc", // green
-  ERR: "err", // red
-  WARN: "warn", // yellow
-  INFO: "info", // blue
+  SUC: "suc",
+  ERR: "err",
+  WARN: "warn",
+  INFO: "info",
   NONE: "none",
+  LIST: "list",
 };
 
 export const ACTION = {
@@ -24,7 +25,7 @@ export class Output {
 
 export class MessageObj extends Output {
   constructor(
-    msg,
+    msg = "",
     type = TYPE.NONE,
     action = ACTION.NONE,
     supplemental = undefined
@@ -36,9 +37,10 @@ export class MessageObj extends Output {
 }
 
 export class ListObj extends Output {
-  constructor(header, notes = [], msg = " ", type = "lst") {
+  constructor(header, notes = [], msg = "", type = TYPE.LIST) {
     super(msg, type);
     this.header = header;
     this.notes = notes;
+    // console.log("ListObj:", notes);
   }
 }

@@ -2,10 +2,11 @@
   margin: 5px 0 5px 0;
   background-color: hsl(50, 0%, 100%);
   padding: 3px 3px 2px 7px;
-  border-radius: 0 3px 3px 0;
-  border: 1px solid hsl(0, 0%, 75%);
+  /* border-radius: 0 3px 3px 0; */
+  border-radius: 6px;
+  border: 1px solid hsl(0, 0%, 55%);
   width: 100%;
-  box-shadow: 1px 1px 8px -5px hsl(0, 0%, 20%);
+  box-shadow: 1px 1px 5px -3px hsl(0, 0%, 60%);
 }
 
 .sm-note:hover {
@@ -100,4 +101,8 @@
 #sel-title {
   font-size: var(--header-font-size);
   margin: 8px 0;
+}
+
+#selection-list {
+  overflow-y: scroll;
 }

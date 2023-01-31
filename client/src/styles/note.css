@@ -1,4 +1,5 @@
 .note {
+  position: relative;
   display: flex;
   margin: 5px 0 8px 0;
   width: var(--visible-w);
@@ -6,38 +7,52 @@
 
 .note-content {
   background-color: hsl(50, 0%, 100%);
-  border-radius: 0 4px 4px 4px;
+  border-radius: 4px;
   width: 100%;
-  border: 3px solid hsl(200, 00%, 88%);
-  padding: 6px;
+  border: 1px solid hsl(200, 0%, 78%);
+  padding: 6px 6px 6px 10px;
+  overflow-x: hidden;
+  box-shadow: 0px 1px 9px -5px hsl(0, 0%, 50%);
 }
 
 .selected {
-  background-color: hsl(50, 70%, 90%);
-  box-shadow: inset 0 0 0 3px hsl(50, 60%, 70%);
+  background-color: hsl(200, 70%, 96%);
+  box-shadow: inset 0 0 0 3px hsl(200, 60%, 70%);
 }
 
 .note-content:hover {
-  background-color: hsl(200, 85%, 95%);
+  background-color: hsl(50, 85%, 95%);
 }
+
+/* NOTE NUMBER */
 
 .note-num {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsl(200, 60%, 40%);
-  color: hsl(50, 0%, 100%);
+  background-color: hsl(200, 60%, 90%);
+  color: hsl(200, 60%, 40%);
   font-weight: 700;
-  font-size: 10pt;
-  border-radius: 4px 0 0 4px;
-  width: 25px;
-  height: 25px;
+  font-size: 11pt;
+  border-radius: 8px 0 0 8px;
+  width: 30px;
+  margin: 4px -5px 4px 0;
+  padding-right: 5px;
 }
 
 .note-num:hover {
   cursor: pointer;
-  background-color: hsl(200, 20%, 45%);
+  background-color: hsl(200, 60%, 40%);
+  color: hsl(200, 60%, 100%);
+  width: 30px;
 }
+
+.selected-num {
+  background-color: hsl(200, 60%, 50%);
+  color: hsl(200, 60%, 100%);
+}
+
+/* NOTE CONTENT */
 
 .note-title {
   font-size: larger;
@@ -55,56 +70,55 @@
 .note-tags {
   font-size: 11pt;
   font-weight: 600;
-  color: hsl(20, 40%, 50%);
-  background-color: hsl(40, 0%, 95%);
+  color: hsl(140, 0%, 60%);
   border-radius: 3px;
-  border: 1px solid hsl(40, 40%, 50%);
-  padding: 0 3px 2px 3px;
+  padding: 0 8px 2px 0;
   cursor: pointer;
 }
 
 .note-tags:hover {
-  color: hsl(40, 100%, 35%);
-  background-color: hsl(40, 90%, 90%);
-  border-radius: 3px;
+  color: hsl(140, 50%, 40%);
+  text-decoration: 1px underline hsl(140, 50%, 40%);
 }
 
-.note-actions {
+/* ACTIONS */
+
+.note-act-del {
+  position: absolute;
+  top: 0;
+  right: 0;
   visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  cursor: pointer;
-  width: 0;
-}
-
-.note-content:hover + .note-actions {
-  visibility: visible;
-  width: 30px;
-}
-
-.note-actions:hover {
-  visibility: visible;
-  width: 30px;
-}
-
-.note-action {
-  margin-left: -4px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50%;
-  border-radius: 0 4px 4px 0;
+  overflow: hidden;
+  cursor: pointer;
+  width: 0;
+  height: 28px;
+  border-radius: 0 4px 0 10px;
+  box-shadow: 0px 0px 7px -3px hsl(0, 0%, 30%);
+  background-color: hsl(20, 60%, 60%);
 }
 
-.note-action img {
+.note-act-del img {
   width: 12px;
   height: 12px;
 }
 
-.note-action.note-del:hover {
-  background-color: hsl(0, 30%, 70%);
-  color: white;
+.note-content:hover + .note-act-del {
+  visibility: visible;
+  width: 28px;
+}
+
+.note-act-del:hover {
+  background-color: hsl(20, 70%, 60%);
+  visibility: visible;
+  width: 28px;
+}
+
+.note-act-del:hover img {
+  width: 16px;
+  height: 16px;
 }
 
 .note-action.note-stick:hover {
@@ -113,5 +127,6 @@
 }
 
 .sticky {
-  border: 3px solid hsl(90, 60%, 50%);
+  background-color: hsl(30, 40%, 95%);
+  border: 1px solid hsl(30, 60%, 50%);
 }

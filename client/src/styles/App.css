@@ -10,6 +10,7 @@
   --center-w: 650px;
   --right-w: 250px;
   --header-font-size: 16pt;
+  --center-bg: hsl(200, 10%, 97%);
 }
 
 body {
@@ -41,9 +42,10 @@ body {
   padding: 10px;
   height: fit-content;
   max-height: 98vh;
-  background-color: hsl(200, 10%, 97%);
+  background-color: var(--center-bg);
   box-shadow: 0 0 13px -4px hsl(0, 0%, 30%);
-  z-index: 2;
+  z-index: 0;
+  overflow-x: visible;
 }
 
 #right {
