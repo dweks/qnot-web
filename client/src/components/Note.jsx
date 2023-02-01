@@ -119,8 +119,8 @@ const NoteTags = (props) => {
 const NoteActions = (props) => {
   return (
     <div className="note-actions anm2">
-      <NoteActionSticky pin={props.pin} />
       <NoteActionDelete delete={props.delete} />
+      <NoteActionSticky pin={props.pin} />
     </div>
   );
 };

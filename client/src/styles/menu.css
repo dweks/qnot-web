@@ -1,0 +1,44 @@
+:root {
+  --left-w: 65px;
+}
+
+#menu {
+  display: flex;
+  flex-direction: column;
+  background-color: hsl(200, 10%, 55%);
+  align-items: center;
+  width: var(--left-w);
+  height: fit-content;
+  border-radius: 8px 0 0 8px;
+  padding: 10px;
+  z-index: 3;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(var(--left-w) - 18px);
+  height: calc(var(--left-w) - 18px);
+  background-color: hsl(200, 10%, 45%);
+  margin-bottom: 8px;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 1px 1px 3px -3px hsl(0, 0%, 20%);
+  border: 2px solid hsl(200, 10%, 40%);
+}
+
+.menu-item:hover{
+  background-color: hsl(200, 10%, 60%);
+}
+
+.menu-item p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16pt;
+  font-weight: 600;
+  color: hsl(200, 50%, 100%);
+  width: 40px;
+  height: 40px;
+}

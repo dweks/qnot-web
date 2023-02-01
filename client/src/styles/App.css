@@ -24,17 +24,6 @@ body {
   display: flex;
 }
 
-#menu {
-  display: flex;
-  flex-direction: column;
-  background-color: hsl(200, 10%, 55%);
-  width: var(--left-w);
-  height: 400px;
-  border-radius: 8px 0 0 8px;
-  padding: 6px;
-  z-index: 3;
-}
-
 #center {
   display: flex;
   flex-direction: column;

@@ -74,9 +74,6 @@
 }
 
 .note-tags {
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
   font-size: 11pt;
   font-weight: 600;
   color: hsl(340, 40%, 50%);
@@ -97,17 +94,18 @@
 /* ACTIONS */
 
 .note-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
   position: absolute;
   top: 0;
   right: 0;
   visibility: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   overflow: hidden;
   cursor: pointer;
-  width: 0;
+  height: 0;
+  width: 50px;
   border: solid hsl(200, 0%, 78%);
   border-width: 0 0 1px 1px;
   border-radius: 0 4px 0 10px;
@@ -115,23 +113,19 @@
   background-color: var(--center-bg);
 }
 
-.note-action {
-  margin: 2px;
-}
-
-.note-action img {
+.note-actions img {
   width: 14px;
   height: 14px;
 }
 
 .note-content:hover + .note-actions {
   visibility: visible;
-  width: 28px;
+  height: 28px;
 }
 
 .note-actions:hover {
   visibility: visible;
-  width: 28px;
+  height: 28px;
 }
 
 .note-act-del {
