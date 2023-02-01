@@ -4,12 +4,13 @@ import { parseEntry } from "./utilities/parse";
 import std_dispatch from "./utilities/dispatch";
 import Carg from "./classes/carg";
 import { ListObj, MessageObj, TYPE as T, ACTION as A } from "./classes/output";
+import Menu from "./components/Menu";
 import SelectionObj from "./classes/selectionObject";
 import { Messages, Listing } from "./components/Main";
 import { Selection } from "./components/Selection";
 import "./styles/App.css";
 
-export function Main() {
+export function App() {
   const [entry, setEntry] = useState("");
   const [selection, updateSelection] = useState(new SelectionObj());
   const [list, updateList] = useState(new ListObj("Nothing to list"));
@@ -82,7 +83,7 @@ export function Main() {
 
   return (
     <div id="main">
-      <Left />
+      <Menu />
       <div id="center">
         <div id="entry">
           <div id="prompt" className="anm2">
@@ -120,8 +121,4 @@ export function Main() {
   );
 }
 
-function Left(props) {
-  return <div id="left">left</div>;
-}
-
-export default Main;
+export default App;

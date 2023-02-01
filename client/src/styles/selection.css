@@ -1,0 +1,79 @@
+.sm-note {
+  margin: 5px 0 5px 0;
+  background-color: hsl(50, 0%, 100%);
+  padding: 3px 3px 2px 7px;
+  /* border-radius: 0 3px 3px 0; */
+  border-radius: 6px;
+  border: 1px solid hsl(0, 0%, 55%);
+  width: 100%;
+  box-shadow: 1px 1px 5px -3px hsl(0, 0%, 60%);
+}
+
+.sm-note:hover {
+  background-color: hsl(10, 70%, 90%);
+  cursor: pointer;
+}
+
+.sm-note-title {
+  font-size: 11pt;
+}
+
+.sm-note-body {
+  padding: 3px 0;
+  font-size: 10pt;
+}
+
+#btn-area {
+  display: flex;
+  justify-content: space-evenly;
+  height: var(--entry-h);
+}
+
+.sel-btn {
+  color: hsl(0, 0%, 95%);
+  width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 4px;
+  font-size: 9pt;
+  font-weight: 700;
+}
+
+.sel-btn:active {
+  position: relative;
+  top: 2px;
+}
+
+#btn-del {
+  background-color: hsl(10, 50%, 50%);
+}
+
+#btn-del:hover {
+  background-color: hsl(20, 60%, 50%);
+}
+
+#btn-clear {
+  background-color: hsl(50, 50%, 45%);
+}
+
+#btn-clear:hover {
+  background-color: hsl(50, 80%, 40%);
+}
+
+#btn-export {
+  background-color: hsl(150, 30%, 40%);
+}
+
+#btn-export:hover {
+  color: hsl(50, 0%, 100%);
+  background-color: hsl(150, 50%, 50%);
+}
+
+#sel-title {
+  font-size: var(--header-font-size);
+  margin: 8px 0;
+}
+
+#selection-list {
+  overflow-y: scroll;
+}

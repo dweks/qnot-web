@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Tag from "./Tag";
 import deleteNoteImg from "../graphics/delete-note.png";
+import pinNoteImg from "../graphics/pin-note.png";
 
 export const Note = (props) => {
   function classIfSelected(classText) {
@@ -15,7 +16,7 @@ export const Note = (props) => {
     props.select(props.note);
   }
 
-  function toggleSticky() {
+  function togglePin() {
     props.command("stick", [props.note._id, props.note.sticky]);
   }
 
@@ -46,8 +47,7 @@ export const Note = (props) => {
         selectedClass={classIfSelected}
         stickyClass={classIfSticky}
       />
-      <NoteActionDelete delete={deleteNote} />
-      {/* <NoteActionSticky toggle={toggleSticky} /> */}
+      <NoteActions delete={deleteNote} pin={togglePin} />
     </motion.div>
   );
 };
@@ -93,15 +93,13 @@ const NoteContent = (props) => {
     >
       {props.note.title && <NoteTitle title={props.note.title} />}
       <NoteBody body={props.note.body} />
-      {props.note.tags && (
-        <NoteTags tags={props.note.tags} id={props.note._id} />
-      )}
+      <NoteTags tags={props.note.tags} id={props.note._id} />
     </div>
   );
 };
 
 const NoteTitle = (props) => {
-  return <p className="note-title">{props.title}</p>;
+  return <h1 className="note-title">{props.title}</h1>;
 };
 
 const NoteBody = (props) => {
@@ -118,10 +116,19 @@ const NoteTags = (props) => {
   );
 };
 
+const NoteActions = (props) => {
+  return (
+    <div className="note-actions anm2">
+      <NoteActionSticky pin={props.pin} />
+      <NoteActionDelete delete={props.delete} />
+    </div>
+  );
+};
+
 const NoteActionDelete = (props) => {
   return (
     <div
-      className="note-action note-act-del anm2"
+      className="note-action note-act-del anm1"
       onClick={() => props.delete()}
     >
       <img className="anm2" src={deleteNoteImg} alt="Delete this note" />
@@ -131,8 +138,11 @@ const NoteActionDelete = (props) => {
 
 const NoteActionSticky = (props) => {
   return (
-    <div className="note-action note-stick" onClick={() => props.toggle()}>
-      ^
+    <div
+      className="note-action note-act-stick anm1"
+      onClick={() => props.pin()}
+    >
+      <img className="anm2" src={pinNoteImg} alt="Pin this note" />
     </div>
   );
 };

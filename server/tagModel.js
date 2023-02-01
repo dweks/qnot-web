@@ -8,12 +8,12 @@ const tagSchema = new Schema({
     required: true,
     unique: true,
   },
-  // notes: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: "Note",
-  //   },
-  // ],
+  notes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Note",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Tag", tagSchema);

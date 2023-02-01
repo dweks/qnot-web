@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Note } from "./Note";
 import selectAllImg from "../graphics/select-all.png";
 
+
 export function LastEntry(props) {
   return (
     <div id="last">

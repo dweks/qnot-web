@@ -56,6 +56,7 @@ const DeleteSelected = (props) => {
     />
   );
 };
+
 const ClearSelected = (props) => {
   return (
     <input
@@ -71,7 +72,7 @@ const ClearSelected = (props) => {
 const ExportSelected = (props) => {
   return (
     <input
-      id="btn-clear"
+      id="btn-export"
       className="sel-btn anm2"
       type="button"
       value="EXPORT"
