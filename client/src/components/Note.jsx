@@ -60,9 +60,9 @@ export const SmallNote = (props) => {
       transition={{ ease: "easeOut", duration: 0.2 }}
       exit={{
         opacity: 0,
-        height: 0,
         overflow: "hidden",
-        transition: { ease: "easeOut", duration: 0.1 },
+        height: 0,
+        transition: { ease: "easeOut", duration: 0.2 },
       }}
       className="sm-note anm2"
       onClick={() => props.select(props.note)}

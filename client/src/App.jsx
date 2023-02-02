@@ -6,7 +6,7 @@ import Carg from "./classes/carg";
 import { ListObj, MessageObj, TYPE as T, ACTION as A } from "./classes/output";
 import Menu from "./components/Menu";
 import SelectionObj from "./classes/selectionObject";
-import { Messages, Listing } from "./components/Main";
+import { Messages, List } from "./components/Main";
 import { Selection } from "./components/Selection";
 import "./styles/App.css";
 
@@ -105,7 +105,7 @@ export function App() {
             <Messages message={currentMessage.current} />
           )}
         </AnimatePresence>
-        <Listing
+        <List
           listing={list}
           select={select}
           selection={selection}

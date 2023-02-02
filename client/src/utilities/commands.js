@@ -16,6 +16,7 @@ export const add = async (rawNote) => {
   const tagsExistJson = await tagsExistResponse.json();
 
   if (tagsExistResponse.ok) {
+    console.log(parsedNote.tags);
     const tagResponse = await fetch("/api/notes/tags", {
       method: "POST",
       body: JSON.stringify(parsedNote.tags),
@@ -162,3 +163,5 @@ export const select = async (notes) => {
     return new MessageObj("", T.INFO, A.SELECT, notes);
   }
 };
+
+// Change page

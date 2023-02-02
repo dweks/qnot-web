@@ -128,7 +128,34 @@
 #list-header h1 {
   margin-left: 8px;
   padding: 4px;
+  width: auto;
+  width: 500px;
 }
+
+#pages {
+  display: flex;
+  justify-self: flex-end;
+}
+
+#page-btns {
+  display: flex;
+  padding: 3px;
+  width: fit-content;
+}
+
+#page-btns img {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin-left: 6px;
+}
+
+#page-disp {
+  font-size: 12pt;
+  font-weight: 600;
+  width:fit-content;
+}
+
 #messages {
   width: var(--visible-w);
 }

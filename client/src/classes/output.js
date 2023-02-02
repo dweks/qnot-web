@@ -1,3 +1,4 @@
+const PERPAGE = 6;
 export const TYPE = {
   SUC: "suc",
   ERR: "err",
@@ -41,6 +42,32 @@ export class ListObj extends Output {
     super(msg, type);
     this.header = header;
     this.notes = notes;
-    // console.log("ListObj:", notes);
+    this.count = notes.length;
+    this.pages = Math.ceil(this.count / PERPAGE);
+    this.currPage = 1;
+    this.view = this.setView();
+  }
+
+  prevPage() {
+    if (this.currPage === 1) {
+      return -1;
+    }
+    this.currPage -= 1;
+    this.view = this.setView();
+  }
+
+  nextPage() {
+    if (this.currPage === this.pages) {
+      return -1;
+    }
+    this.currPage += 1;
+    this.view = this.setView();
+  }
+
+  setView() {
+    return this.notes.slice(
+      (this.currPage - 1) * PERPAGE,
+      Math.min(this.currPage * PERPAGE, this.count)
+    );
   }
 }

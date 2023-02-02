@@ -15,6 +15,7 @@ export function Selection(props) {
         overflow: "hidden",
         transition: { duration: 0.3 },
       }}
+      className="anm2"
     >
       <SelectionActions command={props.command} selection={props.selection} />
       <SelectionList select={props.select} selection={props.selection} />
