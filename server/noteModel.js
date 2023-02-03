@@ -18,10 +18,6 @@ const noteSchema = new Schema(
         ref: "Tag",
       },
     ],
-    // tags: {
-    //   type: String,
-    //   required: true,
-    // },
     sticky: {
       type: Boolean,
       default: false,

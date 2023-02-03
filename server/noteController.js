@@ -1,4 +1,5 @@
 const Note = require("./noteModel");
+const Tag = require("./tagModel");
 const mongoose = require("mongoose");
 
 const getNotesBySearch = async (req, res) => {
@@ -28,7 +29,7 @@ const getNotesByGather = async (req, res) => {
 const getNotesByRecent = async (req, res) => {
   try {
     const note = await Note.find({})
-      .populate("tags")
+      .populate("tags", "tag")
       .limit(req.query.num)
       .sort({ createdAt: -1 });
     res.status(200).json(note);
@@ -53,11 +54,37 @@ const getNote = async (req, res) => {
 
 // create new note
 const createNote = async (req, res) => {
-  const { title, body, tags } = req.body;
+  const { title, body, emptyTags } = req.body;
+  const tags = JSON.parse(req.query.tags);
 
   try {
-    const note = await Note.create({ title, body, tags });
-    res.status(200).json(note);
+    // Create note document with empty tags array, to get note id
+    const noteNoTags = await Note.create({ title, body, emptyTags });
+    // Create tag docs and/or push note id to them
+    const tagsWritten = await Tag.bulkWrite(
+      tags.map((tag) => ({
+        updateOne: {
+          filter: { tag: tag },
+          update: { $set: { tag: tag }, $push: { notes: noteNoTags._id } },
+          upsert: true,
+        },
+      }))
+    );
+    // Now get ids from tags to push to note
+    const tagsFound = await Tag.find({ tag: { $in: tags } });
+    const tagIds = tagsFound.map((tag) => {
+      return tag._id.toString();
+    });
+
+    const noteWithTags = await Note.findByIdAndUpdate(noteNoTags._id, {
+      $push: {
+        tags: {
+          $each: tagIds,
+        },
+      },
+    });
+
+    res.status(200).json(noteNoTags);
   } catch (error) {
     res.status(404).json({ error: error.message });
   }
@@ -65,11 +92,6 @@ const createNote = async (req, res) => {
 
 // delete a note
 const deleteNotes = async (req, res) => {
-  // const { id } = req.params;
-  // if (!mongoose.Types.ObjectId.isValid) {
-  //   return res.status(404).json({ error: "No such note" });
-  // }
-
   const notes = JSON.parse(req.query.notes);
   const note = await Note.deleteMany({ _id: { $in: notes } });
   if (!note) {

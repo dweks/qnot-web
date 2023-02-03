@@ -9,7 +9,7 @@ const {
   createNote,
   toggleSticky,
 } = require("./noteController");
-const { createTag, getTags } = require("./tagController");
+const { createTag, getTags, getAllTags } = require("./tagController");
 
 const router = express.Router();
 
@@ -20,6 +20,7 @@ router.get("/search", getNotesBySearch);
 router.get("/last", getNotesByRecent);
 router.get("/sticky", getNotesBySticky);
 router.get("/tags", getTags);
+router.get("/tags/all", getAllTags);
 
 // POST
 router.post("/", createNote);

@@ -8,44 +8,19 @@ export const add = async (rawNote) => {
     return new MessageObj("Command `add` must take arguments.", T.ERR);
   }
   const parsedNote = parseAdd(rawNote);
+  const holdTags = parsedNote.tags;
+  parsedNote.tags = [];
 
-  const tagsExistResponse = await fetch(
-    `/api/notes/tags?tags=${JSON.stringify(parsedNote.tags)}`
-  );
-  // tags Ids that already exist in DB
-  const tagsExistJson = await tagsExistResponse.json();
-
-  if (tagsExistResponse.ok) {
-    console.log(parsedNote.tags);
-    const tagResponse = await fetch("/api/notes/tags", {
+  const noteResponse = await fetch(
+    `/api/notes?tags=${JSON.stringify(holdTags)}`,
+    {
       method: "POST",
-      body: JSON.stringify(parsedNote.tags),
+      body: JSON.stringify(parsedNote),
       headers: {
         "Content-type": "application/json",
       },
-    });
-    const tagJson = await tagResponse.json();
-
-    if (tagsExistJson.length || tagJson.length) {
-      parsedNote.tags = [].concat(
-        Array.from(tagsExistJson, (tag) => {
-          return tag._id;
-        }).concat(
-          Array.from(tagJson, (tag) => {
-            return tag._id;
-          })
-        )
-      );
     }
-  }
-
-  const noteResponse = await fetch("/api/notes", {
-    method: "POST",
-    body: JSON.stringify(parsedNote),
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
+  );
   const noteJson = await noteResponse.json();
 
   if (!noteResponse.ok) {
