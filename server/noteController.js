@@ -9,7 +9,9 @@ const getNotesBySearch = async (req, res) => {
         { title: new RegExp(".*" + req.query.qry + ".*") },
         { body: new RegExp(".*" + req.query.qry + ".*") },
       ],
-    }).sort({ createdAt: -1 });
+    })
+      .populate("tags")
+      .sort({ createdAt: -1 });
 
     res.status(200).json(note);
   } catch (error) {
@@ -19,7 +21,15 @@ const getNotesBySearch = async (req, res) => {
 
 const getNotesByGather = async (req, res) => {
   try {
-    const note = await Note.find({}).populate("tags").sort({ createdAt: -1 });
+    const note = await Tag.find({
+      tag: { $in: JSON.parse(req.query.tags) },
+    }).populate({
+      path: "notes",
+      populate: {
+        path: "tags",
+        model: "Tag",
+      },
+    });
     res.status(200).json(note);
   } catch (error) {
     res.status(404).json({ error: error.message });

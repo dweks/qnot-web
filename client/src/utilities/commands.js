@@ -60,10 +60,21 @@ export const get = async (tags) => {
   if (!tags.length) {
     return new MessageObj("Provide tags to search for.", T.ERR);
   }
-  const response = await fetch(`/api/notes/gather?tags=${tags}`);
+  const response = await fetch(
+    `/api/notes/gather?tags=${JSON.stringify(tags)}`
+  );
   const json = await response.json();
   if (response.ok) {
-    return new ListObj(`All notes with tags ${tags.join(", ")}:`, json);
+    const notes = Array.from(
+      new Set(
+        [].concat(
+          ...json.map((tag) => {
+            return tag.notes;
+          })
+        )
+      )
+    );
+    return new ListObj(`All notes with tags ${tags.join(", ")}:`, notes);
   } else {
     return new MessageObj(`Nothing found for tags ${tags.join(", ")}.`, T.WARN);
   }
