@@ -35,6 +35,9 @@ class SelectionObj {
   }
 
   removeById(noteId) {
+    if (!noteId || !noteId.length) {
+      return;
+    }
     noteId.forEach((id) => {
       const found = this.notes.find((n) => n._id === id);
       if (found) {

@@ -56,6 +56,9 @@ export function App() {
   const command = async (cmd, arg = "") => {
     const output = await std_dispatch[cmd](arg);
 
+    console.log("Command type:", output.type);
+    console.log("Command action:", output.action);
+
     if (output instanceof MessageObj) {
       currentMessage.current = output;
       switch (output.action) {

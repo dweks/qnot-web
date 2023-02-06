@@ -22,7 +22,7 @@ export const Note = (props) => {
   }
 
   function deleteNote() {
-    props.command("delete", [props.note._id, gatherTagIds(props.note.tags)]);
+    props.command("delete", [[props.note._id], gatherTagIds(props.note.tags)]);
   }
 
   return (
