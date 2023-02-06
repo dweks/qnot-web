@@ -102,6 +102,7 @@ const createNote = async (req, res) => {
 
     res.status(200).json(noteNoTags);
   } catch (error) {
+    console.log("error in add:", error.message);
     res.status(404).json({ error: error.message });
   }
 };

@@ -1,14 +1,21 @@
+// Libraries
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState, createRef, useRef } from "react";
+
+// Utilities
+import "./styles/App.css";
 import { parseEntry } from "./utilities/parse";
 import std_dispatch from "./utilities/dispatch";
+
+// Data Structures
 import Carg from "./classes/carg";
-import { ListObj, MessageObj, TYPE as T, ACTION as A } from "./classes/output";
-import Menu from "./components/Menu";
 import SelectionObj from "./classes/selectionObject";
+import { ListObj, MessageObj, TYPE as T, ACTION as A } from "./classes/output";
+
+// Components
+import Menu from "./components/Menu";
 import { Messages, List } from "./components/Main";
 import { Selection } from "./components/Selection";
-import "./styles/App.css";
 
 export function App() {
   const [entry, setEntry] = useState("");
@@ -41,6 +48,7 @@ export function App() {
           }
         }
       } catch (e) {
+        console.log("error: ", e);
         currentMessage.current = new MessageObj(e.message, T.ERR);
       }
       setEntry(rawEntry);
@@ -55,9 +63,6 @@ export function App() {
 
   const command = async (cmd, arg = "") => {
     const output = await std_dispatch[cmd](arg);
-
-    console.log("Command type:", output.type);
-    console.log("Command action:", output.action);
 
     if (output instanceof MessageObj) {
       currentMessage.current = output;

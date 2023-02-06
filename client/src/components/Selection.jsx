@@ -1,5 +1,6 @@
 import { SmallNote } from "./Note";
 import { AnimatePresence, motion } from "framer-motion";
+import { gatherTagIds } from "../utilities/aggregators";
 
 export function Selection(props) {
   return (
@@ -53,7 +54,16 @@ const DeleteSelected = (props) => {
       className="sel-btn anm2"
       type="button"
       value="DELETE"
-      onClick={() => props.command("delete", [props.selection.getIds()])}
+      onClick={() =>
+        props.command("delete", [
+          props.selection.getIds(),
+          props.selection.notes
+            .map((note) => {
+              return gatherTagIds(note.tags);
+            })
+            .flat(),
+        ])
+      }
     />
   );
 };

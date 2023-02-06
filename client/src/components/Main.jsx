@@ -69,11 +69,13 @@ const ListHeader = (props) => {
     <div id="list-header">
       <SelectViewButton listing={props.listing} select={props.select} />
       <h1>{props.listing.header}</h1>
-      <Pages
-        changePage={props.changePage}
-        currentPage={props.listing.currPage}
-        totalPages={props.listing.pages}
-      />
+      {props.listing.count > 0 && (
+        <Pages
+          changePage={props.changePage}
+          currentPage={props.listing.currPage}
+          totalPages={props.listing.pages}
+        />
+      )}
     </div>
   );
 };

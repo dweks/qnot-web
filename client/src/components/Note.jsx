@@ -47,6 +47,7 @@ export const Note = (props) => {
         note={props.note}
         selectedClass={classIfSelected}
         stickyClass={classIfSticky}
+        command={props.command}
       />
       <NoteActions delete={deleteNote} pin={togglePin} />
     </motion.div>
@@ -94,7 +95,11 @@ const NoteContent = (props) => {
     >
       {props.note.title && <NoteTitle title={props.note.title} />}
       <NoteBody body={props.note.body} />
-      <NoteTags tags={props.note.tags} id={props.note._id} />
+      <NoteTags
+        tags={props.note.tags}
+        id={props.note._id}
+        command={props.command}
+      />
     </div>
   );
 };
@@ -111,7 +116,9 @@ const NoteTags = (props) => {
   return (
     <div className="note-tag-area">
       {props.tags.sort().map((tag) => {
-        return <Tag key={props.id + tag._id} tag={tag.tag} />;
+        return (
+          <Tag key={props.id + tag._id} tag={tag.tag} command={props.command} />
+        );
       })}
     </div>
   );
