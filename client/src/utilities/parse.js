@@ -59,5 +59,5 @@ export function parseTags(string) {
       }
     });
   });
-  return tags;
+  return Array.from(new Set(tags));
 }

@@ -53,7 +53,7 @@ const DeleteSelected = (props) => {
       className="sel-btn anm2"
       type="button"
       value="DELETE"
-      onClick={() => props.command("delete", props.selection.getIds())}
+      onClick={() => props.command("delete", [props.selection.getIds()])}
     />
   );
 };

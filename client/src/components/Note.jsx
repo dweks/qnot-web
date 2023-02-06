@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Tag from "./Tag";
+import { gatherTagIds } from "../utilities/aggregators";
 import deleteNoteImg from "../graphics/delete-note.png";
 import pinNoteImg from "../graphics/pin-note.png";
 
@@ -21,7 +22,7 @@ export const Note = (props) => {
   }
 
   function deleteNote() {
-    props.command("delete", [props.note._id]);
+    props.command("delete", [props.note._id, gatherTagIds(props.note.tags)]);
   }
 
   return (

@@ -71,22 +71,28 @@ const createNote = async (req, res) => {
     // Create note document with empty tags array, to get note id
     const noteNoTags = await Note.create({ title, body, emptyTags });
     // Create tag docs and/or push note id to them
-    const tagsWritten = await Tag.bulkWrite(
+
+    await Tag.bulkWrite(
       tags.map((tag) => ({
         updateOne: {
           filter: { tag: tag },
-          update: { $set: { tag: tag }, $push: { notes: noteNoTags._id } },
+          update: {
+            $set: { tag: tag },
+            $push: { notes: noteNoTags._id.toString() },
+          },
           upsert: true,
         },
       }))
     );
-    // Now get ids from tags to push to note
+
+    // Get ids from tags to push to note
     const tagsFound = await Tag.find({ tag: { $in: tags } });
     const tagIds = tagsFound.map((tag) => {
       return tag._id.toString();
     });
 
-    const noteWithTags = await Note.findByIdAndUpdate(noteNoTags._id, {
+    // Add tag ids to note document
+    await Note.findByIdAndUpdate(noteNoTags._id, {
       $push: {
         tags: {
           $each: tagIds,
@@ -103,7 +109,13 @@ const createNote = async (req, res) => {
 // delete a note
 const deleteNotes = async (req, res) => {
   const notes = JSON.parse(req.query.notes);
+  const tags = JSON.parse(req.query.tags);
   const note = await Note.deleteMany({ _id: { $in: notes } });
+  await Tag.updateMany(
+    { _id: { $in: tags } },
+    { $pull: { notes: { $in: notes } } }
+  );
+
   if (!note) {
     return res.status(400).json({ error: "No such note" });
   }

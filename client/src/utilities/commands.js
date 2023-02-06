@@ -32,13 +32,15 @@ export const add = async (rawNote) => {
 
 // Remove selected notes
 
-export const remove = async (notes) => {
+export const remove = async ([notes, tags]) => {
   if (!notes.length) {
     return new MessageObj("Select notes before deleting.", T.ERR);
   }
 
   const response = await fetch(
-    `/api/notes/delete?notes=${JSON.stringify(notes)}`,
+    `/api/notes/delete?notes=${JSON.stringify(notes)}&tags=${JSON.stringify(
+      tags
+    )}`,
     {
       method: "DELETE",
     }
