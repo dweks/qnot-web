@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Note } from "./Note";
+import { PERPAGE } from "../classes/output";
 import selectAllImg from "../graphics/select-all.png";
 import nextPageBtn from "../graphics/next-page-button.png";
 import prevPageBtn from "../graphics/prev-page-button.png";
@@ -136,7 +137,7 @@ const ListItems = (props) => {
           props.listing.view.map((note, index) => (
             <Note
               key={note._id}
-              num={index + 1}
+              num={index + 1 + PERPAGE * (props.listing.currPage - 1)}
               note={note}
               select={props.select}
               selection={props.selection}

@@ -1,4 +1,4 @@
-const PERPAGE = 6;
+export const PERPAGE = 6;
 export const TYPE = {
   SUC: "suc",
   ERR: "err",
