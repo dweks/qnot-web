@@ -3,6 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import { useEffect, useState, createRef, useRef } from "react";
 
 // Utilities
+import qnotLogo from "./graphics/qnot-logo.png";
 import "./styles/App.css";
 import { parseEntry } from "./utilities/parse";
 import std_dispatch from "./utilities/dispatch";
@@ -48,7 +49,6 @@ export function App() {
           }
         }
       } catch (e) {
-        console.log("error: ", e);
         currentMessage.current = new MessageObj(e.message, T.ERR);
       }
       setEntry(rawEntry);
@@ -93,6 +93,14 @@ export function App() {
     <div id="main">
       <Menu />
       <div id="center">
+        <div id="head">
+          <img src={qnotLogo} alt="qnot logo" />
+          <AnimatePresence>
+            {currentMessage.current.type !== T.HIDE && (
+              <Messages message={currentMessage.current} />
+            )}
+          </AnimatePresence>
+        </div>
         <div id="entry">
           <div id="prompt" className="anm2">
             <span id="prompt-char">{">"}</span>
@@ -108,11 +116,6 @@ export function App() {
           </div>
         </div>
         {/* <LastEntry entry={entry} /> */}
-        <AnimatePresence>
-          {currentMessage.current.type !== T.HIDE && (
-            <Messages message={currentMessage.current} />
-          )}
-        </AnimatePresence>
         <List
           listing={list}
           select={select}
